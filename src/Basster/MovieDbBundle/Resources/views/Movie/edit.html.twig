@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<h1>Movie edit</h1>
+
+<form id="edit_movie_form" action="{{ path('movie_update', { 'slug': entity.slug }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+        {% include 'BassterMovieDbBundle:Movie:movieDbResult.html.twig' %}
+    <p>
+        <button type="submit">Edit</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('movie') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('movie_delete', { 'slug': entity.slug }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<nav>
+    <ul>
+        <li><a href="{{ path('welcome') }}">Alle</a><small>({{ totalCount }})</small></li>
+        {% for key, value in alpha %}
+            <li><a href="{{ path('movie_list_alphabetical', { 'capital': key }) }}">{{ key }}</a><small>({{ value }})</small></li>
+        {% endfor %}
+    </ul>
+</nav>
+<div class="clear_both"></div>
+<div class="movie_search">
+    <form action="{{ path('movie_list_search') }}" method="GET">
+        {{ form_widget(searchForm.query, {'attr': { 'placeholder':'Hier suchen...' } }) }}
+        <button type="submit">Suchen</button>
+    </form>
+</div>
+<div class="navigation">
+                {{ pagination.render()|raw }}
+            </div>
+        <table class="records_list">
+            <thead>
+                <tr>
+                    <th>{{ pagination.sortable('Titel', 'm.title')|raw }}</th>
+                    <th>{{ pagination.sortable('Aufbewahrung', 'sl.title')|raw }}</th>
+                    <th>Aktionen</th>
+                </tr>
+            </thead>
+            <tbody>
+    {% for movie in pagination %}
+                    <tr {% if loop.index is odd %}class="color"{% endif %}>
+                        <td><a href="{{ path('movie_show', { 'slug': movie.slug }) }}">{{ movie.title }}</a></td>
+                        <td>{{ movie.storagelocation }}</td>
+                        <td>
+                            <ul>
+                                <li class="movie_edit">
+                                    <a href="{{ path('movie_edit', { 'slug': movie.slug }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+    {% endfor %}
+                </tbody>
+            </table>
+            <div class="navigation">
+                {{ pagination.render()|raw }}
+            </div>
+
+            <ul>
+                <li>
+                    <a href="{{ path('movie_new') }}">
+                        Neuen Film eintragen
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('storagelocation') }}">
+                        Aufbewahrung verwalten
+                    </a>
+                </li>
+            </ul>
+
+        {% endblock %}

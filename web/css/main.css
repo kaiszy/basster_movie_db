@@ -1,0 +1,91 @@
+/* 
+    Document   : main
+    Created on : 24.11.2011, 23:37:29
+    Author     : basster
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+body {
+    font-family: sans-serif;
+    color: #000;
+    font-size: 12px;
+}
+
+table {
+    border-collapse: collapse !important;
+    width: 80%;
+    margin: 20px 0;
+}
+
+table, img {
+    border: none;
+}
+
+table, th, td {
+    border: solid 1px #99ccff;
+}
+
+a {
+    color: #000;
+}
+
+a:active, a:visited {
+    color: #000;
+}
+
+a:hover {
+    color: #f00;
+}
+
+.clear_both {
+    clear: both;
+}
+
+header {
+    
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    float: left;
+    padding: 2px;
+}
+
+th, td {
+    padding: 5px;
+}
+
+th {
+    background-color: #6699ff;
+}
+
+.color {
+    background-color: #99ccff;
+}
+
+.movie_edit {
+}
+
+.movie_edit a {
+     background: url('../images/edit.png') no-repeat;
+     padding-left: 20px;
+}
+
+#movie_db_result {
+    display: none;
+}

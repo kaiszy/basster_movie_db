@@ -1,0 +1,29 @@
+BassterMovieDbBundle:
+    resource: "@BassterMovieDbBundle/Controller/"
+    type:     annotation
+    prefix:   /
+    
+welcome:
+    pattern:  /
+    defaults: { _controller: BassterMovieDbBundle:Movie:index, capital: null }
+    
+movie_list_search:
+    pattern:  /search/{query}
+    defaults: { _controller: BassterMovieDbBundle:Movie:index, capital: null, query: movie }
+    
+movie_list_alphabetical:
+    pattern:  /list/{capital}
+    defaults: { _controller: BassterMovieDbBundle:Movie:index, capital: null, query: null }
+    
+movie_name_search:
+    pattern:  /search/title/{part}
+    defaults: { _controller: BassterMovieDbBundle:Movie:searchMovieName }
+
+movie_db_search:
+     pattern:  /search/movie/{title}/{autocomplete}
+     defaults: { _controller: BassterMovieDbBundle:Movie:searchTmdb, autocomplete: false }
+
+# Internal routing configuration to handle ESI
+#_internal:
+#   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#   prefix:   /_internal

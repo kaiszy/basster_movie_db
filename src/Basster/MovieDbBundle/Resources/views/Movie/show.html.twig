@@ -1,0 +1,53 @@
+{% extends '::base.html.twig' %}
+{% block title %}{{ parent() }} - {{ entity.title }}{% endblock %}
+{% block body %}
+<h1>Movie</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ entity.title }}</td>
+        </tr>
+    </tbody>
+</table>
+<h2>Filminfos:</h2>
+<section id="movie_db_entry">
+    <h1>{{ dbEntry.name }} ({{ dbEntry.released }})</h1>
+    <section id="runtime">
+        Laufzeit: {{ dbEntry.runtime }} min
+    </section>
+    <section id="plot">
+        {{ dbEntry.overview }}
+    </section>
+    <section id="posters" class="nivoSlider" style="width:154px; height:231px">
+        {% for poster in dbEntry.posters %}
+            {% if poster.image.width == 154 %}
+            <img src="{{ poster.image.url }}" />
+            {% endif %}
+        {% endfor %}
+    </section>
+</section>
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('movie') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('movie_edit', { 'slug': entity.slug }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('movie_delete', { 'slug': entity.slug }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}
