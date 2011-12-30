@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Basster\MovieDbBundle\Entity\Movie;
 use Basster\MovieDbBundle\Form\MovieType;
-use TMDb\Api\TMDb;
+use Basster\TmdbBundle\Entity\TMDb;
 
 /**
  * Movie controller.
